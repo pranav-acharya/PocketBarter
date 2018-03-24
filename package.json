@@ -1,0 +1,46 @@
+{
+  "name": "PocketBarter",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@ptomasroos/react-native-multi-slider": "0.0.11",
+    "bplist-creator": "0.0.7",
+    "bplist-parser": "^0.1.1",
+    "fs-extra": "^4.0.2",
+    "glob": "^7.1.2",
+    "moment": "^2.20.1",
+    "react": "16.0.0-alpha.6",
+    "react-moment": "^0.7.0",
+    "react-native": "0.44.0",
+    "react-native-calendars": "^1.16.1",
+    "react-native-datepicker": "^1.6.0",
+    "react-native-elements": "^0.18.0",
+    "react-native-fcm": "^14.0.1",
+    "react-native-google-signin": "^0.10.0",
+    "react-native-grid-component": "^1.0.7",
+    "react-native-image-picker": "^0.26.7",
+    "react-native-image-slider": "^1.1.5",
+    "react-native-maps": "^0.19.0",
+    "react-native-vector-icons": "^4.4.2",
+    "react-navigation": "^1.0.0-beta.21",
+    "react-redux": "^5.0.7",
+    "redux": "^3.7.2",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.2.0",
+    "simple-plist": "^0.2.1",
+    "stream-buffers": "^3.0.1"
+  },
+  "devDependencies": {
+    "babel-jest": "21.2.0",
+    "babel-preset-react-native": "4.0.0",
+    "jest": "21.2.1",
+    "react-test-renderer": "16.0.0-alpha.6"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}

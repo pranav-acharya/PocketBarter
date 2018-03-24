@@ -1,0 +1,59 @@
+{
+  "project_info": {
+    "project_number": "716532923321",
+    "firebase_url": "https://pocketbarter.firebaseio.com",
+    "project_id": "pocketbarter",
+    "storage_bucket": "pocketbarter.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:716532923321:android:a91a29d9d9d185aa",
+        "android_client_info": {
+          "package_name": "com.pocketbarter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "716532923321-il35ipkkfrcaq0htfob8cg3qd42pv87i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.pocketbarter",
+            "certificate_hash": "5a0df7c8712b1838843e28defe406f5d8df9222f"
+          }
+        },
+        {
+          "client_id": "716532923321-urn3t6110o7vv4d7omnubuue4155c75p.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "716532923321-7k8imsdisn9nfdsmsj02ngjbcslt4955.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyABGPBBJvNB3loE_beKMYh9y-yjUgVNNGA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "716532923321-urn3t6110o7vv4d7omnubuue4155c75p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

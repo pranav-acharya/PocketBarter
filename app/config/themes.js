@@ -1,0 +1,60 @@
+import { CommonBlue } from './commons';
+
+const theme1 = {
+    name:"theme1",
+    BUTTON_BACKGROUND_COLOR: CommonBlue,
+    BUTTON_TEXT_COLOR: '#fff',
+    GLOBAL_BACKGROUND_COLOR:'#fff',
+    GLOBAL_TEXT_COLOR:'black',
+    HEADER_BACKGROUND_COLOR:'green',
+    HEADER_TEXT_COLOR:'#fff',
+    TEXT_TITLE_COLOR:'#000',
+    TEXT_SUBTITLE_COLOR:'gray',
+    ICON_DEFAULT_COLOR:'#000',
+    ICON_SELECTED_COLOR:CommonBlue,
+    DEFAULT_IMAGE_BACKGROUND_COLOR:'#000',
+    SAVE_BUTTON_COLOR:CommonBlue,
+    UNSAVED_BUTTON_COLOR:'#FFF',
+    PICKER_BACKGROUND_DEFAULT_COLOR:'#FFF',
+    PICKER_BACKGROUND_SELECTED_COLOR:'red',
+    PICKER_TEXT_COLOR:'#000',
+}
+
+const theme2 = {
+    name:"theme2",
+    BUTTON_BACKGROUND_COLOR: CommonBlue,
+    BUTTON_TEXT_COLOR: '#fff',
+    
+    GLOBAL_BACKGROUND_COLOR:'#fff',
+    GLOBAL_TEXT_COLOR:'black',
+    
+    HEADER_BACKGROUND_COLOR:CommonBlue,
+    HEADER_TEXT_COLOR:'#fff',
+    
+    TEXT_TITLE_COLOR:'#000',
+    TEXT_SUBTITLE_COLOR:'gray',
+    
+    ICON_DEFAULT_COLOR:'#333',
+    ICON_SELECTED_COLOR:CommonBlue,
+    
+    DEFAULT_IMAGE_BACKGROUND_COLOR:'#000',
+    
+    SAVE_COLOR:CommonBlue,
+    UNSAVE_COLOR:'#FFF',
+
+    PICKER_DEFAULT_BORDER_COLOR:'#f1f1f1',
+    PICKER_BORDER_COLOR:'steelblue',
+    PICKER_BACKGROUND_DEFAULT_COLOR:'#FFF',
+    PICKER_BACKGROUND_SELECTED_COLOR:CommonBlue,
+    PICKER_TEXT_COLOR:'#000',
+    PICKER_TEXT_SELECTED_COLOR:'#FFF',
+
+    TAB_BAR_BACKGROUND_COLOR:'#FFF',
+    TAB_BAR_SHADOW_COLOR:'#000',
+    
+    SEPARATOR_COLOR:'#f1f1f1',
+
+    LINK_COLOR:CommonBlue,
+}
+
+export const theme = theme2;
