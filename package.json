@@ -17,6 +17,8 @@
     "react-moment": "^0.7.0",
     "react-native": "0.44.0",
     "react-native-calendars": "^1.16.1",
+    "react-native-credit-card-input": "^0.4.1",
+    "react-native-credit-card-input-fullpage": "^0.2.0",
     "react-native-datepicker": "^1.6.0",
     "react-native-elements": "^0.18.0",
     "react-native-fcm": "^14.0.1",

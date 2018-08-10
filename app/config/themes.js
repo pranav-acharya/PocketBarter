@@ -55,6 +55,12 @@ const theme2 = {
     SEPARATOR_COLOR:'#f1f1f1',
 
     LINK_COLOR:CommonBlue,
+    ACCEPT_COLOR:'green',
+    REJECT_COLOR:'red',
+
+    CHAT_BUBBLE_COLOR:"#e1e1e1",
+    CHAT_BUBBLE_BORDER_COLOR:"#CCCC99",
+    CHAT_BACKGROUND_COLOR:'white',
 }
 
 export const theme = theme2;

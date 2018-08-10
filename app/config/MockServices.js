@@ -1,5 +1,13 @@
 import { Alert, AsyncStorage } from 'react-native';
-import { allProductsList, productDetailNew, savedProductsList,loggedInUserProfile, productsAndUsersResponse } from '../config/data'
+import { 
+    allProductsList, 
+    productDetailNew, 
+    savedProductsList,
+    loggedInUserProfile, 
+    productsAndUsersResponse,
+    incomingProductRequests,
+    outgoingProductRequests,
+} from '../config/data'
 
 const host = 'localhost';
 const port = '8080';
@@ -247,6 +255,36 @@ export const User = {
         
     }
 
+};
+
+export const Order = {
+    createOrder:(order,success,failure) => {
+        setTimeout(function(){
+            success(order);
+        },1000);
+    }
+};
+
+export const Payment = {
+    makePayment:(payment,success,failure) => {
+        setTimeout(function(){
+            success(payment);
+        },1000);
+    }
+};
+
+export const ProductRequestsService = {
+    getIncomingRequests:(success,failure) => {
+        setTimeout(function(){
+            success(incomingProductRequests);
+        },1000);
+    },
+
+    getOutgoingRequests:(success,failure) => {
+        setTimeout(function(){
+            success(outgoingProductRequests);
+        },1000);
+    }
 }
 
 const myApiKey = "AIzaSyBvappRDgkBmUyFQwevLZva3o9N-cKfDFU";

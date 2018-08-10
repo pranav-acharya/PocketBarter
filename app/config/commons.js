@@ -78,6 +78,7 @@ export const defaultLocation = {
     longitude: -122.4324,
 };
 export const IOS_PADDING_TOP = 20;
+export const ANDROID_PADDING_TOP = 24;
 
 export const getImageExtensionFromValue = (value) => {
     result = (value == 1)? "jpg" : (value == 2)? "png" : "";

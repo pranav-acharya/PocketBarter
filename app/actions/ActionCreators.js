@@ -60,10 +60,28 @@ import {
 	MESSAGES_INFO_SUCCESS,
 	MESSAGES_INFO_FAILURE,
 
-	BUSY_INDICATOR
+	BUSY_INDICATOR,
+
+	INCOMING_PRODUCTS_REQUEST,
+	INCOMING_PRODUCTS_FAILURE,
+	INCOMING_PRODUCTS_SUCCESS,
+
+	OUTGOING_PRODUCTS_REQUEST,
+	OUTGOING_PRODUCTS_FAILURE,
+	OUTGOING_PRODUCTS_SUCCESS,
+
+	CREATE_ORDER_REQUEST,
+	CREATE_ORDER_SUCCESS,
+	CREATE_ORDER_FAILURE,
+	ORDER_RESET,
+
+	PAYMENT_REQUEST,
+	PAYMENT_SUCCESS,
+	PAYMENT_FAILURE,
+	PAYMENT_RESET
 } from './constants';
 //import { Products, User } from '../config/services';
-import { Products, User } from '../config/MockServices';
+import { Products, User, ProductRequestsService, Order, Payment } from '../config/MockServices';
 import { months, CDN_URL,getDistanceFromLatLonInKm } from '../config/commons';
 import { AsyncStorage } from 'react-native';
 export function saveProduct(product){
@@ -385,7 +403,7 @@ export function receivedMessage(message,target_user_id){
 		target_user_id
 	}
 }
-export function visitMessages(target_user_id){
+export function visitMessages(chat_id){
 	// get the items from async storage, remove the key "v" for each chat item for the target id
 	
 	return dispatch => {
@@ -393,19 +411,20 @@ export function visitMessages(target_user_id){
 		AsyncStorage.getItem('chat').
 		then((chatObj) => {
 			var chatHistoryObject = JSON.parse(chatObj) || {};
-			var targetUserChat = chatHistoryObject[target_user_id];
+			var targetUserChat = chatHistoryObject[chat_id];
+			if(targetUserChat == undefined){ return } 
 			targetUserChat = targetUserChat.map((chat_message)=>{
 				delete chat_message["v"]
 				return chat_message
 			});
 			// CHeck if this is necessary after performing the above
-			// chatHistoryObject[target_user_id] = targetUserChat;
+			// chatHistoryObject[chat_id] = targetUserChat;
 			AsyncStorage.setItem('chat',JSON.stringify(chatHistoryObject));
 
 			AsyncStorage.SET_USER_FAILURE
 			dispatch({
 				type:CHAT_VISITED,
-				target_user_id
+				chat_id
 			})
 		});
 		
@@ -476,4 +495,143 @@ export function loadMessageMetadata(){
 		});
 		
 	}
+}
+
+
+export function getIncomingProductRequests(){
+	return (dispatch) => {
+		dispatch({
+			type:INCOMING_PRODUCTS_REQUEST
+		});
+
+		ProductRequestsService.getIncomingRequests(
+			(responseJson) => {
+				responseJson = responseJson.map( (request) => {
+					
+					request["duration"] = getDaysDifference(request.start_date,request.end_date)
+					request["start_date"] = timeConverter(request.start_date);
+					request["end_date"] = timeConverter(request.end_date);
+					return request;
+				})
+				dispatch({
+					type:INCOMING_PRODUCTS_SUCCESS,
+					incoming:responseJson
+				})
+			},
+			(err) => {
+				dispatch({
+					type:INCOMING_PRODUCTS_FAILURE,
+					error:err.message || 'Something went wrong'
+				})
+			}
+		);
+	}
+}
+
+export function getOutgoingProductRequests(){
+	return (dispatch) => {
+		dispatch({
+			type:OUTGOING_PRODUCTS_REQUEST
+		});
+
+		ProductRequestsService.getOutgoingRequests(
+			(responseJson) => {
+				responseJson = responseJson.map( (request) => {
+					
+					request["duration"] = getDaysDifference(request.start_date,request.end_date)
+					request["start_date"] = timeConverter(request.start_date);
+					request["end_date"] = timeConverter(request.end_date);
+					return request;
+				})
+				dispatch({
+					type:OUTGOING_PRODUCTS_SUCCESS,
+					outgoing:responseJson
+				})
+			},
+			(err) => {
+				dispatch({
+					type:OUTGOING_PRODUCTS_FAILURE,
+					error:err.message || 'Something went wrong'
+				})
+			}
+		);
+	}
+}
+
+export function createOrder(order){
+	return (dispatch) => {
+		dispatch({
+			type:CREATE_ORDER_REQUEST
+		});
+
+		Order.createOrder(
+			order,
+			(responseJson) => {
+				dispatch({
+					type:CREATE_ORDER_SUCCESS
+				})
+			},
+			(err) => {
+				dispatch({
+					type:CREATE_ORDER_FAILURE,
+					error:err.message
+				})
+			}	
+		);
+	}
+}
+
+export function makePayment(payment){
+	return (dispatch) => {
+		dispatch({
+			type:PAYMENT_REQUEST
+		});
+
+		Payment.makePayment(
+			payment,
+			(responseJson) => {
+				dispatch({
+					type:PAYMENT_SUCCESS
+				})
+			},
+			(err) => {
+				dispatch({
+					type:PAYMENT_FAILURE,
+					error:err.message
+				})
+			}	
+		);
+	}
+}
+
+export function resetOrder(){
+	return {
+		type:ORDER_RESET
+	}
+}
+
+export function resetPaymentState(){
+	return {
+		type:PAYMENT_RESET
+	}
+}
+
+function getDaysDifference(UNIX_timestamp_start, UNIX_timestamp1_end){
+	var start = new Date(UNIX_timestamp_start * 1000);
+	var end = new Date(UNIX_timestamp1_end * 1000);
+
+	var timeDiff = Math.abs(end.getTime() - start.getTime());
+	var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)); 
+	return diffDays;
+}
+
+function timeConverter(UNIX_timestamp){
+  var a = new Date(UNIX_timestamp * 1000);
+  var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  var year = a.getFullYear();
+  var month = months[a.getMonth()];
+  var date = a.getDate();
+ 
+  var time = date + ' ' + month + ' ' + year;
+  return time;
 }

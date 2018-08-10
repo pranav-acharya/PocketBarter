@@ -32,6 +32,7 @@ export default class ProductTile extends Component {
             props.onSave(this.state);
         }
     };
+    
     render() {
         console.log(this.props.product);
         return (
@@ -75,8 +76,8 @@ export default class ProductTile extends Component {
                     </Text>
                     <View style={styles.descriptionContainer}>
                         <Text style={{color:theme.GLOBAL_TEXT_COLOR}}>
-                            {this.props.product.product !== undefined
-                                ? this.props.product.product.price
+                            {this.props.product.inventory !== undefined
+                                ? ('$' + this.props.product.inventory.rates[0].amount)
                                 : ""}
                         </Text>
                         <Text style={{color:theme.GLOBAL_TEXT_COLOR}}>

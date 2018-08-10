@@ -1,11 +1,76 @@
 
+export const incomingProductRequests = [
+    {
+        "product": {
+            "prd_uuid": "d7194daa-4ff3-426f-98f0-13e0ef02947f",
+            "user_uuid": "b2e02e26-8bd8-481d-8f81-024e785759f4",
+            "name": "Baseball Bat",
+            "price": "$100.00",
+            "description": "Asdfasdfasdf",
+            "location": {
+                "address": null,
+                "location": {
+                    "latitude": "37.785834",
+                    "longitude": "-122.406417",
+                    "radius": ""
+                }
+            },
+            "category": "music",
+            "thumbnail":"https://batandballgame.com/wp-content/uploads/2016/04/best-baseball-bat-reviews.jpg",
+            "created_at": "2018-02-17T20:31:45+05:30"
+        },
+        "requested_by":{
+            "user_uuid": "b2e02e26-8bd8-481d-8f81-024e785759f4",
+            "fname": "Hari",
+            "lname": "",
+            "email": "pranavacharya432@gmail.com",
+        },
+        "start_date":1526063400,
+        "end_date":1526927400,
+        "date":1522081424,
+        "status":"pending",
+        "amount":100,
+    }
+];
+export const outgoingProductRequests = [
+    {
+        "product": {
+            "prd_uuid": "fff9f025-c588-426a-9fde-720901c76758",
+            "user_uuid": "b2e02e26-8bd8-481d-8f81-024e785759f4",
+            "name": "Guitar",
+            "price": "$100.00",
+            "description": "A product by Pranav",
+            "location": {
+                "address": null,
+                "location": {
+                    "latitude": "37.785834",
+                    "longitude": "-122.406417",
+                    "radius": ""
+                }
+            },
+            "category": "music",
+            "thumbnail":"https://usercontent2.hubstatic.com/12556463_f496.jpg",
+            "created_at": "2018-02-19T11:41:42+05:30"
+        },
+        "owner":{
+            "user_uuid": "b2e02e26-8bd8-481d-8f81-024e785759f4",
+            "fname": "Alok",
+            "lname": "Nerurkar",
+            "email": "pranavacharya432@gmail.com",
+        },
+        "start_date":1526063400,
+        "end_date":1526927400,
+        "date":1522081424,
+        "status":"pending",
+        "amount":100,
+    }
+];
 
 export const savedProductsList = [{
     "product": {
         "prd_uuid": "d7194daa-4ff3-426f-98f0-13e0ef02947f",
         "user_uuid": "b2e02e26-8bd8-481d-8f81-024e785759f4",
         "name": "Test",
-        "price": "$100.00",
         "description": "Asdfasdfasdf",
         "location": {
             "address": null,
@@ -19,7 +84,13 @@ export const savedProductsList = [{
         "thumbnail":"19632abc-e07c-44df-a392-1d88d12c49f8.jpg",
         "created_at": "2018-02-17T20:31:45+05:30"
     },
-    "inventory": null,
+    "inventory": {
+        "rates": [{
+            "type": "DAILY",
+            "amount": "100",
+            "currency": "RESERVED"
+        }],
+    },
     "photos": [],
     "distance": 0
 }, {
@@ -27,7 +98,6 @@ export const savedProductsList = [{
         "prd_uuid": "fff9f025-c588-426a-9fde-720901c76758",
         "user_uuid": "b2e02e26-8bd8-481d-8f81-024e785759f4",
         "name": "Pranav’s Product",
-        "price": "$100.00",
         "description": "A product by Pranav",
         "location": {
             "address": null,
@@ -38,10 +108,16 @@ export const savedProductsList = [{
             }
         },
         "category": "music",
-        "thumbnail":"8e808357-858f-4abb-9dc3-f1ec2f90837a.jpg",
+        "thumbnail":"https://usercontent2.hubstatic.com/12556463_f496.jpg",
         "created_at": "2018-02-19T11:41:42+05:30"
     },
-    "inventory": null,
+    "inventory": {
+        "rates": [{
+            "type": "DAILY",
+            "amount": "100",
+            "currency": "RESERVED"
+        }],
+    },
     "photos": [],
     "distance": 0
 }];
@@ -84,7 +160,6 @@ export const productDetailNew = {
         "prd_uuid": "d7194daa-4ff3-426f-98f0-13e0ef02947f",
         "user_uuid": "b2e02e26-8bd8-481d-8f81-024e785759f4",
         "name": "Test",
-        "price": "$100.00",
         "description": "Asdfasdfasdf",
         "location": {
             "address": null,
@@ -98,7 +173,13 @@ export const productDetailNew = {
         "thumbnail": "19632abc-e07c-44df-a392-1d88d12c49f8.jpg",
         "created_at": "2018-02-17T20:31:45+05:30"
     },
-    "inventory": null,
+    "inventory": {
+        "rates": [{
+            "type": "DAILY",
+            "amount": "100",
+            "currency": "RESERVED"
+        }],
+    },
     "photos": [],
     "distance": 0,
     "saved": true
@@ -170,7 +251,6 @@ export const productsAndUsersResponse = {
                     "prd_uuid": "SENDER_ID",
                     "user_uuid": "b2e02e26-8bd8-481d-8f81-024e785759f4",
                     "name": "New product",
-                    "price": "$100.00",
                     "description": "Hello world",
                     "location": {
                         "address": null,
@@ -183,7 +263,13 @@ export const productsAndUsersResponse = {
                     "category": "books",
                     "created_at": "2018-02-06T15:42:36+05:30"
                 },
-                "inventory": null,
+                "inventory": {
+                    "rates": [{
+                        "type": "DAILY",
+                        "amount": "100",
+                        "currency": "RESERVED"
+                    }],
+                },
                 "thumbnail": {
                     "photo_url": "4a3d8053-5f26-408f-b778-b01aa51dddc8.jpg"
                 },

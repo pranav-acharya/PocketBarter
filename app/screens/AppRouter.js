@@ -1,6 +1,6 @@
 import React from 'react';
 import { StackNavigator, DrawerNavigator, DrawerItems, SafeAreaView } from 'react-navigation';
-import { StyleSheet, Platform, Text, ScrollView } from 'react-native';
+import { StyleSheet, Platform, Text, ScrollView, TouchableOpacity, View } from 'react-native';
 import LandingPage from '../screens/LandingPage'
 import LoginScreen from '../screens/LoginScreen'
 import RegisterScreen from '../screens/RegisterScreen'
@@ -11,14 +11,22 @@ import ProfileCreation from '../screens/ProfileCreation'
 import SettingsScreen from '../screens/SettingsScreen'
 import HomeViewStackNavigator from '../screens/home/HomeRouter';
 import AlertsView from './home/alerts/AlertsView'
-
+import { theme } from '../config/themes'
 // TODO: Define a proper menu here
 const CustomDrawerContentComponent = (props) => (
   <ScrollView>
-    <Text>asdfasdfsad</Text>
+    
     <SafeAreaView style={styles.container} forceInset={{ top: 'always', horizontal: 'never' }}>
-      <DrawerItems {...props} />
-      <Text>234567ugfh</Text>
+        <DrawerItems {...props} />
+        <View>
+            <TouchableOpacity>
+                <Text style={styles.menuItem}>Logout</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity>
+                <Text style={styles.menuItem}>Profile</Text>
+            </TouchableOpacity>
+        </View>
     </SafeAreaView>
   </ScrollView>
 );
@@ -56,7 +64,7 @@ const AppRouterStack = StackNavigator({
 });
 
 const AppRouter = DrawerNavigator({
-    AppRouterStack: {
+    Menu: {
         screen: AppRouterStack
     }
 },{
@@ -69,6 +77,13 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
+    menuItem:{
+        borderBottomWidth:1,
+        borderColor:theme.SEPARATOR_COLOR,
+        color:theme.TEXT_SUBTITLE_COLOR,
+        padding:5,
+        fontSize:16,
+    }
 });
 
 

@@ -1,5 +1,5 @@
-import React from 'react';
-import { StyleSheet,Platform, Text, ScrollView } from 'react-native';
+import React, { Component } from 'react';
+import { StyleSheet,Platform, Text, ScrollView, Alert } from 'react-native';
 import { TabNavigator, StackNavigator } from 'react-navigation';
 
 import MessagesView from './alerts/MessagesView'
@@ -13,14 +13,30 @@ import ChatView from './ChatView'
 import ProductDetailView from './ProductDetailView'
 import FilterModal from './FilterModal'
 import CalendarModal from './CalendarModal'
+import PaymentView from './PaymentView'
 import { theme } from '../../config/themes'
 
 import Ionicon from 'react-native-vector-icons/Ionicons';
 import NotificationIcon from './NotificationIcon';
 
 const tabBarIconSize = 38;
+class DummyMenuView extends Component{
+    constructor(props) {
+        super(props);
+    }
+    render(){
+        return null
+    }
+}
 
 const HomeViewTabNavigator = TabNavigator({
+    DummyMenuView:{
+        screen: DummyMenuView,
+        navigationOptions: {
+            tabBarLabel: 'Menu',
+            tabBarIcon: ({ tintColor }) => <Ionicon name="ios-menu" color={tintColor} size={tabBarIconSize} style={styles.tabBarIcon} /> 
+        }
+    },
     AllProductsView: {
         screen: AllProductsView,
         navigationOptions: {
@@ -55,7 +71,21 @@ const HomeViewTabNavigator = TabNavigator({
     swipeEnabled: false,
     lazy:true,
     tabBarPosition: 'bottom',
+    initialRouteName: 'AllProductsView',
+    navigationOptions: ({ navigation }) => ({
+        tabBarOnPress: (scene, jumpToIndex) => {
+            // Alert.alert(JSON.stringify(scene.scene.route.routeName));
+            var routeName = scene.scene.route.routeName;
+            if(routeName == "DummyMenuView"){
+                navigation.navigate('DrawerOpen')
+            }else{
+                navigation.navigate(scene.scene.route.routeName)    
+            }
+            
+        },
+    }),
     tabBarOptions: {
+
         tabStyle:{
             paddingBottom:Platform.OS==='ios'?5:0
         },
@@ -108,6 +138,9 @@ const HomeViewStackNavigator = StackNavigator({
     Calendar:{
         screen: CalendarModal
     },
+    PaymentView:{
+        screen: PaymentView
+    }
 }, 
 {
     mode:'card',

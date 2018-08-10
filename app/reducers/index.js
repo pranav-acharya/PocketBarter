@@ -6,6 +6,9 @@ import FilterReducer from './FilterReducer'
 import NewProductReducer from './NewProductReducer'
 import ChatReducer from './ChatReducer'
 import ConstantsReducer from './ConstantsReducer'
+import ProductRequestsReducer from './ProductRequestsReducer'
+import OrderReducer from './OrderReducer'
+import PaymentReducer from './PaymentReducer'
 
 const rootReducer = combineReducers({
 	ProductsReducer,
@@ -15,6 +18,9 @@ const rootReducer = combineReducers({
 	NewProductReducer,
 	ChatReducer,
 	ConstantsReducer,
+    ProductRequestsReducer,
+    OrderReducer,
+    PaymentReducer,
 })
 
 export default rootReducer

@@ -10,7 +10,7 @@ import { theme } from '../../config/themes';
 import MapView from 'react-native-maps';
 import { Products, User } from '../../config/services';
 import ImageSlider from 'react-native-image-slider';
-import {Calendar} from 'react-native-calendars';
+import { Calendar } from 'react-native-calendars';
 import { connect } from 'react-redux';
 import { getProductDetails, getOwnerDetails, saveProduct, unSaveProduct } from '../../actions/ActionCreators';
 
@@ -22,7 +22,25 @@ const isCloseToBottom = ({layoutMeasurement, contentOffset, contentSize}) => {
     contentSize.height - paddingToBottom;
 };
 
+const dummyMarkers = {
+    '2018-02-28': {selected: true, startingDay:true, color: 'blue'},
+    '2018-03-01': {selected: true, color: 'blue'},
+    '2018-03-02': {selected: true, color: 'blue'},
+    '2018-03-03': {selected: true, endingDay:true, color: 'blue'},
+    '2018-02-24': {selected: true, marked: true, selectedColor: 'blue'},
+    '2018-02-23': {selected: true, marked: true, selectedColor: 'blue'},
+};
+
 class ProductDetailView extends Component {
+
+    generateMarkedDates(dates){
+        var markedDates = {};
+        dates.forEach(function(oDate){
+            markedDates[oDate] = {selected:true, selectedColor:'red', disabled:true}
+        });
+        return markedDates;
+    }
+
     constructor(props){
         super(props);
         console.log(this.props.navigation.state.params);
@@ -34,6 +52,7 @@ class ProductDetailView extends Component {
                 username:'',
                 profileImageURI:''
             },
+            markedDates:this.generateMarkedDates(this.props.navigation.state.params.inventory.availability.dates)
         }
 
     }
@@ -44,9 +63,15 @@ class ProductDetailView extends Component {
             this.props.saveProduct(this.state.product)
         }
     }
+    
+    openRequestDialog(){
+
+    }
+
     componentDidMount(){
         this.props.getProductDetails(this.state);
     }
+
     render() {
         var inventoryDom = [];
         console.log(this.state.product.inventory.availability);
@@ -122,14 +147,7 @@ class ProductDetailView extends Component {
             <Text style={styles.inputTitle}>Availability</Text>
             <Calendar
                 style={[styles.calendar]}
-                markedDates={{
-                    '2018-02-28': {selected: true, startingDay:true, color: 'blue'},
-                    '2018-03-01': {selected: true, color: 'blue'},
-                    '2018-03-02': {selected: true, color: 'blue'},
-                    '2018-03-03': {selected: true, endingDay:true, color: 'blue'},
-                    '2018-02-24': {selected: true, marked: true, selectedColor: 'blue'},
-                    '2018-02-23': {selected: true, marked: true, selectedColor: 'blue'},
-                }}
+                markedDates={ this.state.markedDates }
                 markingType={'period'}
             />
         </View>
@@ -225,7 +243,8 @@ class ProductDetailView extends Component {
                 small
                 raised
                 buttonStyle={styles.availabilityButtonStyle}
-                title='Contact Owner' />
+                title='Contact Owner' 
+                onPress={()=> this.props.navigation.navigate('Calendar',{'productInfo':this.state.product,'markedDates':this.state.markedDates}) }/>
 
         </View>
       </View>

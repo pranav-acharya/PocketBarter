@@ -3,20 +3,28 @@ import { TabNavigator } from 'react-navigation';
 import { theme } from '../../../config/themes';
 import AlertsView from './AlertsView'
 import MessagesView from './MessagesView'
+import IncomingProductRequestsBadge from './IncomingProductRequestsBadge'
+import IncomingProductRequestsView from './IncomingProductRequestsView'
+import OutgoingProductRequestsBadge from './OutgoingProductRequestsBadge'
+import OutgoingProductRequestsView from './OutgoingProductRequestsView'
+
 import Ionicon from 'react-native-vector-icons/Ionicons';
 
-
+const tabBarIconSize = 30;
+const tintColor = 'blue';
 const AlertsTabNavigator = TabNavigator({
-    AlertsView: {
-        screen:AlertsView,
+    Incoming: {
+        screen:IncomingProductRequestsView,
         navigationOptions: {
-            tabBarLabel: 'Alerts',
+            tabBarLabel: 'Incoming',
+            tabBarIcon: ({ tintColor }) => <IncomingProductRequestsBadge color={tintColor} size={tabBarIconSize}/>
         }
     },
-    MessagesView:{
-        screen:MessagesView,
+    Outgoing:{
+        screen:OutgoingProductRequestsView,
         navigationOptions: {
-            tabBarLabel: 'Messages',
+            tabBarLabel: 'Outgoing',
+            tabBarIcon: ({ tintColor }) => <OutgoingProductRequestsBadge color={tintColor} size={tabBarIconSize}/>
         }
     }
 },{
@@ -29,7 +37,8 @@ const AlertsTabNavigator = TabNavigator({
         activeTintColor: theme.ICON_SELECTED_COLOR,
         inactiveTintColor: theme.ICON_DEFAULT_COLOR,
         upperCaseLabel: false,
-        showLabel:true,
+        showLabel:false,
+        showIcon: true,
         labelStyle: {
             fontSize: 22,
             marginTop:0,
@@ -44,6 +53,9 @@ const AlertsTabNavigator = TabNavigator({
             // Tab navigator not showing up due to the css below
             //justifyContent:'center',
             //alignItems:'center',
+        },
+        iconStyle:{
+            width:100,
         },
         indicatorStyle:{
             backgroundColor:theme.ICON_SELECTED_COLOR
